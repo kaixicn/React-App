@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import cookie from 'react-cookies'
 import store from './Pages/Login/redux/store'
 
@@ -9,6 +9,13 @@ import './App.css';
 import 'antd/dist/antd.min.css'
 
 
+export function App_fn(props){
+ const [isLogined, setIsLogined]= useState(false);
+
+
+  return isLogined?<Login/>:<Main />
+}
+
 export default class App extends React.Component{
   componentDidMount(){
     store.subscribe(()=> {this.setState({})})
@@ -16,6 +23,7 @@ export default class App extends React.Component{
 
   render(){
     const isLogined = cookie.load("logined") === undefined
-    return isLogined ? <Login /> : <Main />
+    // return isLogined ? <Login /> : <Main />
+    return  <Main />
   }
 }

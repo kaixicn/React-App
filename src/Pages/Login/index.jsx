@@ -7,8 +7,10 @@ import { login } from './redux/action'
 import cookie from 'react-cookies'
 import './index.css'
 
+
+
 export default class Login extends React.Component {
-  
+
   componentDidMount(){
     store.subscribe(()=> {this.setState({})})
   }
@@ -16,7 +18,7 @@ export default class Login extends React.Component {
   state = {
     loginId:"",
     password:"",
-    loading: false 
+    loading: false
   }
 
   changeHandelLoginId = (e) => {
@@ -32,7 +34,7 @@ export default class Login extends React.Component {
     })
   }
   onFinish = (values) => {
-    
+
     this.setState({loading: true})
 
     axios.post('http://localhost:3000/management/login?login_id=' + this.state.loginId + "&password=" + this.state.password).then(
@@ -61,17 +63,17 @@ export default class Login extends React.Component {
     )
   };
   render(){
-    
+
     return (
       <div className="login">
         <div className="loginTitile"><h1>ログイン<hr/></h1></div>
-        
+
         <Form name="normal_login" className="login-form" initialValues={{ remember: true, }} onFinish={this.onFinish} >
-          
+
           <Form.Item name="username" rules={[ { required: true, message: 'Please input your Username!', }, ]} >
             <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" onChange={this.changeHandelLoginId}/>
           </Form.Item>
-          
+
           <Form.Item name="password" rules={[ { required: true, message: 'Please input your Password!', }, ]} >
             <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password" onChange={this.changeHandelPassword}/>
           </Form.Item>
@@ -87,5 +89,5 @@ export default class Login extends React.Component {
       </div>
     );
   }
-  
+
 };
