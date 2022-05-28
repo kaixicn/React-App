@@ -1,11 +1,9 @@
 import React from 'react'
 
 
-export default class IssueEmployeeId extends React.Component{
-    render(){
+export default function IssueEmployeeId(){
         return(
             <>
             </>
         )
-    }
 }

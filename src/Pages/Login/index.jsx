@@ -42,7 +42,7 @@ export default class Login extends React.Component {
       response => {
         if(response.data){
           cookie.save("logined", true, {path: "/"});
-          store.dispatch(login(true));
+          store.dispath(login(true));
           console.log("登陆成功");
         }else{
           this.setState({loading: false});
