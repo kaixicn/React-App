@@ -9,7 +9,6 @@ import {
 
 export function reducer_employee_info(preState=[], action){
     const {type, data} = action
-    console.log("data:",data)
     switch(type){
         case SET_EMPOLOYEY_INFO_LIST:
             return [...data]
