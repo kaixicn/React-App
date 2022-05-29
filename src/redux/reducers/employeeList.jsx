@@ -4,8 +4,19 @@ import {
     CHANGE_INPUT_EMPLOYEENAMEKANJI, 
     CHANGE_INPUT_EMPLOYEENAMEKATAKANA, 
     CHANGE_INPUT_SUBDIVISION, 
+    SET_EMPOLOYEY_INFO_LIST,
 } from "../container"
 
+export function reducer_employee_info(preState=[], action){
+    const {type, data} = action
+    console.log("data:",data)
+    switch(type){
+        case SET_EMPOLOYEY_INFO_LIST:
+            return [...data]
+        default:
+            return preState
+    }
+}
 export function reducer_loading(preState=false, action){
     const { type, data } = action
     switch(type) {

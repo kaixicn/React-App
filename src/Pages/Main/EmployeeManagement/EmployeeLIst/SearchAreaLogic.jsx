@@ -6,8 +6,10 @@ import {
     action_onChange_employeeNameKanji,
     action_onChange_employeeNameKatakana,
     action_onChange_subdivistion,
+    action_set_empoloyee_info_list,
 } from '../../../../redux/actions/employeeLIst'
 import axios from "axios";
+import qs from 'qs';
 
 
 
@@ -54,12 +56,18 @@ function mapDispatchToProps(dispatch){
     function fn_Search(btnStatus,id,nameKanji,nameKatakana,subdivision){
 
         dispatch(action_loading(btnStatus)) 
-        axios.get('http://localhost:3000/management/employee/search').then(
+        axios.get('http://localhost:3000/management/employee/search',{
+            params: {
+                employee_Id:id,
+                employee_name_kanji: nameKanji,
+                employee_Name_Katakana: nameKatakana,
+                employee_subdivision: qs.stringify({"subdivision":subdivision}, { indices: false })
+            }
+        }).then(
             //请求成功
             response => {
                 if (response.data) {
-                    console.log("response.data:", response.data)
-                    //TODO dispatch
+                    dispatch(action_set_empoloyee_info_list(response.data))
                 }
             },
             //请求失败
