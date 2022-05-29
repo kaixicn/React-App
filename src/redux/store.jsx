@@ -1,9 +1,18 @@
 import { createStore, combineReducers } from "redux";
 // reducer
-import loading from "./reducers/employeeList";
+import {reducer_loading, 
+        reducer_employeeId, 
+        reducer_employeeNameKanji,
+        reducer_employeeNameKatakana,
+        reducer_subdivision,
+} from "./reducers/employeeList";
 
 const allReducer = combineReducers({
-        loadingFlg: loading
+        store_loading: reducer_loading,
+        store_employeeId: reducer_employeeId,
+        store_employeeNameKanji: reducer_employeeNameKanji,
+        store_employeeNameKatakana: reducer_employeeNameKatakana,
+        store_subdivision: reducer_subdivision,
 })
 
 export default createStore(allReducer);
