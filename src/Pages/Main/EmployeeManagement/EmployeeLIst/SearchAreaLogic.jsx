@@ -1,7 +1,7 @@
 import { connect } from  'react-redux'
 import SearchArea from './SearchArea'
-import { 
-    action_loading, 
+import {
+    action_loading,
     action_onChange_employeeId,
     action_onChange_employeeNameKanji,
     action_onChange_employeeNameKatakana,
@@ -14,7 +14,7 @@ import qs from 'qs';
 
 
 function mapStateToProps(state){
-    return { 
+    return {
         state_loading : state.store_loading,
         state_employeeId: state.store_employeeId,
         state_employeeNameKanji: state.store_employeeNameKanji,
@@ -24,13 +24,12 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-    return { 
+    return {
         onClick_search : (btnStatus, id, nameKanji,nameKatakana,subdivision)=>{ fn_Search(btnStatus, id, nameKanji,nameKatakana,subdivision) },
         onChange_employeeId : (data) => { fn_EmployeeId(data.target.value) },
         onChange_employeeNameKanji : (data) => { fn_EmployeeNameKanji(data.target.value) },
         onChange_employeeNameKatakana : (data) => { fn_employeeNameKatakana(data.target.value) },
         onChange_subdivision: (data) => { fn_subdivision(data) }
-
     }
 
     function fn_subdivision(data){
@@ -55,7 +54,7 @@ function mapDispatchToProps(dispatch){
 
     function fn_Search(btnStatus,id,nameKanji,nameKatakana,subdivision){
 
-        dispatch(action_loading(btnStatus)) 
+        dispatch(action_loading(btnStatus))
         axios.get('http://localhost:3000/management/employee/search',{
             params: {
                 employee_Id:id,
@@ -75,7 +74,7 @@ function mapDispatchToProps(dispatch){
                 console.log("请求失败")
             }
         ).finally(() => {
-            dispatch(action_loading(false)) 
+            dispatch(action_loading(false))
         })
     }
 }

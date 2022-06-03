@@ -7,14 +7,15 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import 'antd/dist/antd.min.css'
+import {ReduxProvider} from "./redux/store_new";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider store={store}>
+        <ReduxProvider>
           <App />
-      </Provider>
+        </ReduxProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

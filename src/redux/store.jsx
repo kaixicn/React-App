@@ -1,7 +1,7 @@
 import { createStore, combineReducers } from "redux";
 // reducer
-import {reducer_loading, 
-        reducer_employeeId, 
+import {reducer_loading,
+        reducer_employeeId,
         reducer_employeeNameKanji,
         reducer_employeeNameKatakana,
         reducer_subdivision,
@@ -18,4 +18,7 @@ const allReducer = combineReducers({
 })
 
 export default createStore(allReducer);
+
+
+
 
