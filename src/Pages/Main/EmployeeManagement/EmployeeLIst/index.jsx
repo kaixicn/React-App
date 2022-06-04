@@ -1,14 +1,13 @@
 import React from 'react'
-import {Space} from 'antd';
-import SearchAreaLogic from './SearchAreaLogic';
-import SearchResultListLogic from './SearchResultListLogic'
+import { Space } from 'antd';
+import SearchArea from './SearchArea';
+import SearchResultList from './SearchResultList'
 
-//
 export default function EmployeeList_fn(props) {
     return(
         <Space direction="vertical" size="middle" style={{display: 'flex'}}>
-            <SearchAreaLogic/>
-            <SearchResultListLogic/>
+            <SearchArea/>
+            <SearchResultList/>
         </Space>
     )
 }

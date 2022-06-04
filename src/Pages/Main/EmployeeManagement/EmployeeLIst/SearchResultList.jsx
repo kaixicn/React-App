@@ -1,12 +1,7 @@
 import { Table, Space, } from 'antd';
-
-
+import { useSelector, } from 'react-redux';
 
 export default function SearchResultList(props) {
-
-  console.log("state_loading: ", props.state_loading)
-  console.log("employee_list: ", props.employee_list)
-
   const columns = [
     { title: '社員ID',    dataIndex: 'employeeId', sorter: (a, b) => a.age - b.age, },
     { title: '社員名(漢字)',    dataIndex: 'employeeNameKanji', },
@@ -16,17 +11,19 @@ export default function SearchResultList(props) {
     { title: '操作', key: 'action', render: (record) => ( <Space size="middle"> <span>{record.age}</span> </Space> ), },
   ];
   
+  const employeeInfoList = useSelector((state) => state.employeeList.employeeInfoList)
+  
   let data = [];
   
   // TODO set Data from store.getState
-  for (let i = 0; i < props.employee_list.length; i++) {
+  for (let i = 0; i < employeeInfoList.length; i++) {
     data.push({
       key: i,
-      employeeId: props.employee_list[i].employeeId,
-      employeeNameKanji: props.employee_list[i].employeeNameKanji,
-      employeeNameKatakana: props.employee_list[i].employeeNameKatakana,
-      subdivision: props.employee_list[i].subdivision,
-      entryDate: props.employee_list[i].entryDate,
+      employeeId: employeeInfoList[i].employeeId,
+      employeeNameKanji: employeeInfoList[i].employeeNameKanji,
+      employeeNameKatakana: employeeInfoList[i].employeeNameKatakana,
+      subdivision: employeeInfoList[i].subdivision,
+      entryDate: employeeInfoList[i].entryDate,
       description: `工事中`,
     });
   }

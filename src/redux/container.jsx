@@ -1,6 +1,0 @@
-export const IS_LOADING = "isLoading"
-export const CHANGE_INPUT_EMPLOYEEID = "changeInputEmployeeId"
-export const CHANGE_INPUT_EMPLOYEENAMEKANJI = "changeInputEmployeeNameKanji"
-export const CHANGE_INPUT_EMPLOYEENAMEKATAKANA = "changeInputEmployeeNameKatakana"
-export const CHANGE_INPUT_SUBDIVISION = "changeSubdivision"
-export const SET_EMPOLOYEY_INFO_LIST = "setEmployeeInfoList"

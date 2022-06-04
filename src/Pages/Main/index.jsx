@@ -6,7 +6,7 @@ import PageFooter from '../../Component/PageFooter'
 import BreadcrumbNavigation from '../../Component/BreadcrumbNavigation'
 import PageHeader from '../../Component/PageHeader'
 import { Routes, Route } from 'react-router-dom'
-import EmpolyeeLIst from './EmployeeManagement/EmployeeLIst'
+import EmpolyeeList from './EmployeeManagement/EmployeeList'
 
 const { Content } = Layout;
 
@@ -22,7 +22,7 @@ export default class Main extends React.Component {
           <BreadcrumbNavigation />
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360, }} >
               <Routes>
-                <Route path="/employee/management" element={ <EmpolyeeLIst/>} />
+                <Route path="/employee/management" element={ <EmpolyeeList/>} />
                 <Route path="/employee/IssueEmployeeId" element={ <div>aaaaaaa</div>} />
               </Routes>
             </div>
