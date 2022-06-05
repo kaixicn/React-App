@@ -7,7 +7,7 @@ const employeeListSlice = createSlice({
         loading : false,
         employeeId : "",
         employeeName : "",
-        subdivision : [],
+        subdivision : [1,2,3],
         employeeInfoList : [],
     },
     reducers: {
@@ -27,4 +27,4 @@ export const { reducer_employeeNameKana } = employeeListSlice.actions
 export const { reducer_subdivision } = employeeListSlice.actions
 export const { reducer_employeeInfoList } = employeeListSlice.actions
 
-export const reducer = employeeListSlice.reducer
+export const reducer_employeeListSlice = employeeListSlice.reducer

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout } from 'antd';
+import { Layout, BackTop, } from 'antd';
 import './index.css'
 import SideMenu from '../../Component/SideMenu'
 import PageFooter from '../../Component/PageFooter'
@@ -7,6 +7,8 @@ import BreadcrumbNavigation from '../../Component/BreadcrumbNavigation'
 import PageHeader from '../../Component/PageHeader'
 import { Routes, Route } from 'react-router-dom'
 import EmpolyeeList from './EmployeeManagement/EmployeeList'
+
+import Test from '../Test';
 
 const { Content } = Layout;
 
@@ -22,12 +24,19 @@ export default class Main extends React.Component {
           <BreadcrumbNavigation />
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360, }} >
               <Routes>
-                <Route path="/employee/management" element={ <EmpolyeeList/>} />
-                <Route path="/employee/IssueEmployeeId" element={ <div>aaaaaaa</div>} />
+                <Route path="/" element={ <p>Top Page</p>} />
+                <Route path="/employee">
+                  <Route path="management" element={ <EmpolyeeList/>} />
+                  <Route path="coding" element={ <p>Coding</p>} />
+                </Route>
+                <Route path="/test" element={ <Test/>} />
+                <Route path="/setting" element={ <p>Setting Page</p>} />
+                <Route path="/logout" element={ <p>Log out</p>} />
               </Routes>
             </div>
           </Content>
           <PageFooter/>
+          <BackTop/>
         </Layout>
       </Layout>
     );

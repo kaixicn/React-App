@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Layout, Menu } from 'antd';
-import { TeamOutlined, } from '@ant-design/icons';
+import { TeamOutlined, HomeOutlined, ExportOutlined, SettingOutlined, BugOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom'
 
 export default function SideMenu() {
@@ -14,7 +14,7 @@ export default function SideMenu() {
     return(
         <Sider collapsible collapsed={collapse} onCollapse={onCollapse}>
             <div className="logo" />
-            <Menu theme="dark" mode="inline" items={items} />{/*  defaultSelectedKeys={['1']}  */}
+            <Menu theme="dark" mode="inline" items={items} defaultSelectedKeys={['Top']}/>{/*  defaultSelectedKeys={['1']}  */}
         </Sider>
     )
 }
@@ -22,20 +22,41 @@ export default function SideMenu() {
 //　メニュー内容
 const items = [
     {
+        key: "Top",
+        label: <Link to="/">トップ</Link>,
+        icon: <HomeOutlined />,
+    },
+    {
         key: "EmployeeManagement",
-        label: 'Employee',
+        label: '社員管理',
         icon: <TeamOutlined />,
         children:[
             {
                 key: "EmployeeList",
-                label: <Link to="/employee/management">EmployeeList</Link>,
+                label: <Link to="/employee/management">社員一覧</Link>,
             },
             {
-                key: "IssueEmployeeId",
-                label: <Link to="/employee/IssueEmployeeId">工事中</Link>,
+                key: "coding",
+                label: <Link to="/employee/coding">PAGE【工事中】</Link>,
             },
     
         ]
+    },
+
+    {
+        key: "setting",
+        label: <Link to="/setting">設定</Link>,
+        icon: <SettingOutlined />,
+    },
+    {
+        key: "logOut",
+        label: <Link to="/logout">ログアウト</Link>,
+        icon: <ExportOutlined />,
+    },
+    {
+        key: "test",
+        label: <Link to="/test">Test</Link>,
+        icon: <BugOutlined />,
     },
 ];
 

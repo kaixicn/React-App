@@ -1,93 +1,95 @@
 import React from 'react'
-import { Form, Input, Button, Modal } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import axios from "axios";
-import store from './redux/store'
-import { login } from './redux/action'
-import cookie from 'react-cookies'
 import './index.css'
+import { ImportOutlined  } from '@ant-design/icons';
+import axios from "axios";
+import { Form, Input, Button, Checkbox, Alert } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { v4 as uuidv4 } from 'uuid';
+import { saveLoginInfo } from '../../utils/LoginUtility';
+import { useDispatch } from 'react-redux'
+import {reducer_isLogin} from '../../redux/slices/login';
 
+export default function Login(props) {
+  const dispatch = useDispatch()
 
+  const [hasError, setHasError ] = React.useState(false)
+  const [errTitle, setErrorTitle ] = React.useState("")
+  const [errMessage, setErrMessage ] = React.useState("")
 
-export default class Login extends React.Component {
-
-  componentDidMount(){
-    store.subscribe(()=> {this.setState({})})
-  }
-
-  state = {
-    loginId:"",
-    password:"",
-    loading: false
-  }
-
-  changeHandelLoginId = (e) => {
-    const newLoginId = e.target.value
-    this.setState({
-      loginId:newLoginId
-    })
-  }
-  changeHandelPassword = (e) => {
-    const newPassword = e.target.value
-    this.setState({
-      password: newPassword
-    })
-  }
-  onFinish = (values) => {
-
-    this.setState({loading: true})
-
-    axios.post('http://localhost:3000/management/login?login_id=' + this.state.loginId + "&password=" + this.state.password).then(
-      //登陆成功
+  //登録ボタン押下
+  const onFinish = (values) => {
+    setLoading(true) //登録ボタン -> Loading状態
+    
+    const token = uuidv4();
+    
+    axios.post('http://localhost:3000/management/login?' + 
+    'login_id=' + values.username +
+    '&password=' + values.password +
+    '&remember=' + values.remember + 
+    '&token=' + token 
+    ,).then(
+      //apiにアクセス成功
       response => {
-        if(response.data){
-          cookie.save("logined", true, {path: "/"});
-          store.dispath(login(true));
-          console.log("登陆成功");
-        }else{
-          this.setState({loading: false});
-          Modal.error({
-            title: '登陆失败',
-            content: '用户名或密码出错'
-          });
+        if(response.data){//登録成功の場合
+          console.log("登録成功")
+          saveLoginInfo("Employee_ID",values.username) //IDを記録
+          saveLoginInfo(values.username, token) //ログイン暗号を記録
+          dispatch(reducer_isLogin(true)) //ログイン状態 -> ログイン済み
+
+        }else{//登録失敗の場合
+          console.log("登録失敗")
+          setErrorTitle("登録失敗しました")
+          setErrMessage("ログインIDまたはパスワードが違います。")
+          setHasError(true)
         }
       },
-      //登陆失败
+      //apiにアクセス失败
       error => {
-        Modal.error({
-          title: error.request.status,
-          content: error.message
-        });
-        this.setState({loading: false});
+        console.log(error)
+        setErrorTitle(error.code)
+        setErrMessage(error.message)
+        setHasError(true)
       }
-    )
+    ).finally(() => {
+      setLoading(false)
+    })
   };
-  render(){
 
-    return (
-      <div className="login">
-        <div className="loginTitile"><h1>ログイン<hr/></h1></div>
+  const [loading, setLoading] = React.useState(false)
 
-        <Form name="normal_login" className="login-form" initialValues={{ remember: true, }} onFinish={this.onFinish} >
+  return (
+    <div> 
+      {hasError ? <Alert message={errTitle} description={errMessage} type="error" showIcon closable onClose={()=> {setHasError(false)}}/> : ""}
+      <Form name="normal_login" className="login-form" initialValues={{ remember: true, }} onFinish={onFinish} >
+        <Form.Item className='loginTitile'>
+          Login
+        </Form.Item>
 
-          <Form.Item name="username" rules={[ { required: true, message: 'Please input your Username!', }, ]} >
-            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" onChange={this.changeHandelLoginId}/>
+        <Form.Item name="username" rules={[ { required: true, message: 'Please input your Username!', }, ]} >
+          <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" allowClear/>
+        </Form.Item>
+        
+        <Form.Item name="password" rules={[ {required: true, message: 'Please input your Password!',},]} >
+          <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password" allowClear/>
+        </Form.Item>
+        
+        <Form.Item>
+          <Form.Item name="remember" valuePropName="checked" noStyle>
+            <Checkbox>Remember me</Checkbox>
           </Form.Item>
+          <a className="login-form-forgot"> Forgot password </a>
+        </Form.Item>
 
-          <Form.Item name="password" rules={[ { required: true, message: 'Please input your Password!', }, ]} >
-            <Input prefix={<LockOutlined className="site-form-item-icon" />} type="password" placeholder="Password" onChange={this.changeHandelPassword}/>
-          </Form.Item>
-
-          <Form.Item>
-            <div className="center">
-              <Button type="primary" htmlType="submit" className="login-form-button" loading={this.state.loading}>
-                登陆
-              </Button>
-            </div>
-          </Form.Item>
-        </Form>
-      </div>
-    );
-  }
-
+        <Form.Item>
+          <Button icon={<ImportOutlined/>} type="primary" htmlType="submit" className="login-form-button" loading={loading}>
+            Log in
+          </Button>
+          Or <a>register now!</a>
+        </Form.Item>
+      </Form>
+    </div>
+      
+  );
 };
+
+
