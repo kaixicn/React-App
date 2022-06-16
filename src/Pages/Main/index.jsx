@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { Layout, BackTop, } from 'antd';
-import './index.css'
-import SideMenu from '../../Component/SideMenu'
-import PageFooter from '../../Component/PageFooter'
-import BreadcrumbNavigation from '../../Component/BreadcrumbNavigation'
-import PageHeader from '../../Component/PageHeader'
-import { Routes, Route } from 'react-router-dom'
-import EmpolyeeList from './EmployeeManagement/EmployeeList'
+import './index.css';
+import SideMenu from '../../Component/SideMenu';
+import PageFooter from '../../Component/PageFooter';
+import BreadcrumbNavigation from '../../Component/BreadcrumbNavigation';
+import PageHeader from '../../Component/PageHeader';
+import { Routes, Route } from 'react-router-dom';
+import EmpolyeeList from './EmployeeManagement/Employeelist';
 
 import Test from '../Test';
 

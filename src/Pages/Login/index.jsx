@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { saveLoginInfo } from '../../utils/LoginUtility';
 import { useDispatch } from 'react-redux'
 import {reducer_isLogin} from '../../redux/slices/login';
+import CreateNewAcount from './CreateNewAcount'
 
 export default function Login(props) {
   const dispatch = useDispatch()
@@ -30,7 +31,7 @@ export default function Login(props) {
     ,).then(
       //apiにアクセス成功
       response => {
-        if(response.data){//登録成功の場合
+        if(response.data.LoginResult){//登録成功の場合
           console.log("登録成功")
           saveLoginInfo("Employee_ID",values.username) //IDを記録
           saveLoginInfo(values.username, token) //ログイン暗号を記録
@@ -77,16 +78,17 @@ export default function Login(props) {
           <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
-          <a className="login-form-forgot"> Forgot password </a>
+          <span className="login-form-forgot"> Forgot password </span>
         </Form.Item>
 
         <Form.Item>
           <Button icon={<ImportOutlined/>} type="primary" htmlType="submit" className="login-form-button" loading={loading}>
             Log in
           </Button>
-          Or <a>register now!</a>
+          Or <span className="register" onClick={() => { alert("a") }}>register now!</span>
         </Form.Item>
       </Form>
+      <CreateNewAcount></CreateNewAcount>
     </div>
       
   );

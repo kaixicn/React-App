@@ -13,6 +13,5 @@ export default function App(props){
   if(!loginStatus){
     dispatch(reducer_isLogin(isLogin()))
   }
-
   return loginStatus ? <Main /> : <Login/> 
 }

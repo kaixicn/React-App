@@ -12,6 +12,8 @@ import {
     reducer_subdivision, 
     reducer_employeeInfoList,
 } from "../../../../redux/slices/employeeList";
+import { getToken } from '../../../../utils/LoginUtility'
+
 
 export default function SearchArea(props) {
     const plainOptions = [
@@ -20,22 +22,28 @@ export default function SearchArea(props) {
         {label: '事務', value: 3,},
     ];
 
+    const [searchCondtions,setSearchCondtions] = useState(true)
     const dispatch = useDispatch()
     const isLoading = useSelector((state) => state.employeeList.loading)
     const employeeId = useSelector((state) => state.employeeList.employeeId)
     const employeeName = useSelector((state) => state.employeeList.employeeName)
-    const emplyeeNameKana = useSelector((state) => state.employeeList.emplyeeNameKana)
+    const employeeNameKana = useSelector((state) => state.employeeList.employeeNameKana)
     const subdivision = useSelector((state) => state.employeeList.subdivision)
 
     function onClickSeartch(){ 
-        dispatch(reducer_loading(true))
+        dispatch(reducer_loading(true));
+        
+        let params = {
+            searchCondtions: searchCondtions,
+            employee_Id : employeeId,
+            employee_name_kanji : employeeName,
+            employee_name_katakana : employeeNameKana,
+            employee_subdivision : qs.stringify({"subdivision":subdivision}, { indices: false }),
+            token : getToken(),
+        }
+
         axios.get('http://localhost:3000/management/employee/search',{
-            params: {
-                employee_Id : employeeId,
-                employee_name_kanji : employeeName,
-                employee_Name_Katakana : emplyeeNameKana,
-                employee_subdivision : qs.stringify({"subdivision":subdivision}, { indices: false })
-            }
+            params: params
         }).then(
             //请求成功
             response => {
@@ -62,8 +70,8 @@ export default function SearchArea(props) {
         dispatch(reducer_employeeName(newEmployeeName));
     }
     function handelChangeEmployeeNameKana(data) {
-        const newEmplyeeNameKana = data.target.value;
-        dispatch(reducer_employeeNameKana(newEmplyeeNameKana));
+        const newEmployeeNameKana = data.target.value;
+        dispatch(reducer_employeeNameKana(newEmployeeNameKana));
     }
     function handelChangeSubdivision(data) {
         const newSubdivision = [...data]
@@ -78,7 +86,7 @@ export default function SearchArea(props) {
         </div>
     );
 
-    const [searchCondtions,setSearchCondtions] = useState(true)
+
     return (
         <Card title={
                 <>

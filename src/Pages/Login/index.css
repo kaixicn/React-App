@@ -25,12 +25,39 @@ body{
     
 }
 
-.login-form-forgot {
-    float: right;
-}
+
 .ant-col-rtl .login-form-forgot {
     float: left;
 }
 .login-form-button {
     width: 100%;
+}
+
+.login-form-forgot {
+    float: right;
+    color: yellowgreen;
+}
+
+.login-form-forgot:hover{
+    color: purple;
+    cursor:pointer;
+}
+.login-form-forgot:active{
+    color: red;
+    cursor:pointer;
+}
+
+
+.register{
+    color: lightcoral;
+}
+
+.register:hover{
+    color: blue;
+    cursor:pointer;
+}
+
+.register:active{
+    color: red;
+    cursor:pointer;
 }
