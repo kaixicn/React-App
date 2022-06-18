@@ -33,13 +33,14 @@ body{
     width: 100%;
 }
 
+/* 找回密码 */
 .login-form-forgot {
     float: right;
-    color: yellowgreen;
+    color: lightcoral;
 }
 
 .login-form-forgot:hover{
-    color: purple;
+    color: blue;
     cursor:pointer;
 }
 .login-form-forgot:active{
@@ -47,13 +48,13 @@ body{
     cursor:pointer;
 }
 
-
+/* 注册 */
 .register{
-    color: lightcoral;
+    color: yellowgreen;
 }
 
 .register:hover{
-    color: blue;
+    color: purple;
     cursor:pointer;
 }
 
