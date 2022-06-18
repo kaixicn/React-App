@@ -1,0 +1,13 @@
+.flex{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.widht100px{
+    width: 100px;
+}
+
+.display-inlin{
+    display:inline-block;
+}

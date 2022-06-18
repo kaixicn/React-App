@@ -1,5 +1,7 @@
 const Keys = {
-    getToken : "TOKEN"
+    token : "TOKEN",
+    login_id : "LOGINID",
+    password : "PASSWORD",
 }
 
 export default Keys;

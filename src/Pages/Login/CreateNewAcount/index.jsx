@@ -1,25 +1,16 @@
 import { Button, Col, DatePicker, Drawer, Form, Input, Row, Select, Space } from 'antd';
-import React, { useState } from 'react';
+import React from 'react';
 const { Option } = Select;
 
-const CreateNewAcount = () => {
-  const [visible, setVisible] = useState(true);
-
-  const showDrawer = () => {
-    setVisible(true);
-  };
-
-  const onClose = () => {
-    setVisible(false);
-  };
+const CreateNewAcount = (props) => {
 
   return (
     <>
-      <Drawer title="Create a new account" width={720} onClose={onClose} visible={visible} bodyStyle={{ paddingBottom: 80, }}
+      <Drawer title="Create a new account" width={720} onClose={props.onClose} visible={props.visible} bodyStyle={{ paddingBottom: 80, }}
         extra={
           <Space>
-            <Button onClick={onClose}>Cancel</Button>
-            <Button onClick={onClose} type="primary">
+            <Button onClick={props.onClose}>Cancel</Button>
+            <Button onClick={props.onClose} type="primary">
               Submit
             </Button>
           </Space>

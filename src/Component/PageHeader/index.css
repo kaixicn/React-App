@@ -1,0 +1,19 @@
+
+.site-page-header-ghost-wrapper {
+    background-color: #F0F2F5;
+    /* border-bottom: 1px solid white; */
+    
+    border-bottom: 1px solid rgb(222, 222, 222);
+  }
+
+.breadcrumb{
+    padding: 0px 0px 0px 20px;
+    background-color: #FAFAFA;
+    border-bottom: 1px solid rgb(222, 222, 222);
+}
+
+.inline{
+  display: inline;
+  color: DarkCyan;
+  cursor:pointer;
+}

@@ -3,7 +3,6 @@ import { Layout, BackTop, } from 'antd';
 import './index.css';
 import SideMenu from '../../Component/SideMenu';
 import PageFooter from '../../Component/PageFooter';
-import BreadcrumbNavigation from '../../Component/BreadcrumbNavigation';
 import PageHeader from '../../Component/PageHeader';
 import { Routes, Route } from 'react-router-dom';
 import EmpolyeeList from './EmployeeManagement/Employeelist';
@@ -21,12 +20,11 @@ export default class Main extends React.Component {
         <Layout className="site-layout">
           <PageHeader />
           <Content style={{ margin: '0 16px', }} >
-          <BreadcrumbNavigation />
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360, }} >
               <Routes>
                 <Route path="/" element={ <p>Top Page</p>} />
                 <Route path="/employee">
-                  <Route path="management" element={ <EmpolyeeList/>} />
+                  <Route path="employeeList" element={ <EmpolyeeList/>} />
                   <Route path="coding" element={ <p>Coding</p>} />
                 </Route>
                 <Route path="/test" element={ <Test/>} />

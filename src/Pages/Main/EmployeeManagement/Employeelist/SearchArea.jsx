@@ -12,8 +12,9 @@ import {
     reducer_subdivision, 
     reducer_employeeInfoList,
 } from "../../../../redux/slices/employeeList";
-import { getToken } from '../../../../utils/LoginUtility'
-
+import cookie from 'react-cookies';
+import cookieKeys from '../../../../ContentMaster/cookieKeys';
+import { Decrypt } from '../../../../utils/secret'
 
 export default function SearchArea(props) {
     const plainOptions = [
@@ -39,7 +40,7 @@ export default function SearchArea(props) {
             employee_name_kanji : employeeName,
             employee_name_katakana : employeeNameKana,
             employee_subdivision : qs.stringify({"subdivision":subdivision}, { indices: false }),
-            token : getToken(),
+            token : Decrypt(cookie.load(cookieKeys.token)),
         }
 
         axios.get('http://localhost:3000/management/employee/search',{

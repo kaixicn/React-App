@@ -26,7 +26,7 @@ body{
 }
 
 
-.ant-col-rtl .login-form-forgot {
+.ant-col-rtl {
     float: left;
 }
 .login-form-button {
@@ -35,7 +35,7 @@ body{
 
 /* 找回密码 */
 .login-form-forgot {
-    float: right;
+    float: left;
     color: lightcoral;
 }
 
@@ -50,6 +50,7 @@ body{
 
 /* 注册 */
 .register{
+    float: right;
     color: yellowgreen;
 }
 

@@ -1,13 +1,7 @@
 import React, { useState } from 'react'
 import { Layout, Menu } from 'antd';
-import { TeamOutlined, HomeOutlined, ExportOutlined, SettingOutlined, BugOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import { TeamOutlined, HomeOutlined, } from '@ant-design/icons';
 import { Link } from 'react-router-dom'
-import { Modal } from 'antd';
-import {reducer_isLogin} from '../../redux/slices/login';
-import { removeLoginInfo } from '../../utils/LoginUtility';
-import { useDispatch } from 'react-redux'
-
-const { confirm } = Modal;
 
 export default function SideMenu() {
     
@@ -25,7 +19,7 @@ export default function SideMenu() {
             children:[
                 {
                     key: "EmployeeList",
-                    label: <Link to="/employee/management">社員一覧</Link>,
+                    label: <Link to="/employee/employeeList">社員一覧</Link>,
                 },
                 {
                     key: "coding",
@@ -34,40 +28,8 @@ export default function SideMenu() {
         
             ]
         },
-
-        {
-            key: "setting",
-            label: <Link to="/setting">設定</Link>,
-            icon: <SettingOutlined />,
-        },
-        {
-            key: "logOut",
-            label: "ログアウ",
-            icon: <ExportOutlined />,
-            onClick: () => { 
-                confirm({
-                    title: <span>ログアウト確認</span>,
-                    icon: <ExclamationCircleOutlined />,
-                    content: 'ログアウトします、よろしいですか？',
-
-                    onOk() {
-                        removeLoginInfo();
-                        dispatch(reducer_isLogin(false));
-                        
-                    },
-                onCancel() {},
-            }); }
-        },
-        {
-            key: "test",
-            label: <Link to="/test">Test</Link>,
-            icon: <BugOutlined />,
-        },
     ];
 
-
-
-    const dispatch = useDispatch();
     
     const { Sider } = Layout;
     const [ collapse, setCollapse ] = useState(false);
