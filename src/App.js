@@ -6,6 +6,7 @@ import { useDispatch, useSelector} from 'react-redux'
 import {reducer_isLogin} from './redux/slices/login';
 import cookie from 'react-cookies'
 import axios from "axios";
+import cookieKeys from './ContentMaster/cookieKeys'
 
 export default function App(props){
 
@@ -15,7 +16,7 @@ export default function App(props){
   // redux中のログイン状態をリセット(false:未登録)
   dispatch(reducer_isLogin(false))
 
-  const token = cookie.load("TOKEN");
+  const token = cookie.load(cookieKeys.getToken);
 
   if (token === undefined || token === null){
     console.log("未登録: tokenの取得結果がundefinedまたはnull、登録画面を表示する")
