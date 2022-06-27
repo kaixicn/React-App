@@ -93,7 +93,7 @@ export default function SearchArea(props) {
                 <>
                     <Space size={[10, 0]} wrap={false}>
                         検索条件:
-                        <Radio.Group onChange={console.log("aaaa")} size="small" value={searchCondtions}>
+                        <Radio.Group size="small" value={searchCondtions}> {/* onChange={console.log("aaaa")} */}
                             <Radio.Button value={true} onClick={()=> setSearchCondtions(true)}>有</Radio.Button>
                             <Radio.Button value={false} onClick={()=> setSearchCondtions(false)}>無</Radio.Button>
                         </Radio.Group>

@@ -11,6 +11,7 @@ export default function SideMenu() {
             key: "Top",
             label: <Link to="/">トップ</Link>,
             icon: <HomeOutlined />,
+            children: null
         },
         {
             key: "EmployeeManagement",
@@ -25,12 +26,11 @@ export default function SideMenu() {
                     key: "coding",
                     label: <Link to="/employee/coding">PAGE【工事中】</Link>,
                 },
-        
             ]
         },
     ];
 
-    
+
     const { Sider } = Layout;
     const [ collapse, setCollapse ] = useState(false);
 

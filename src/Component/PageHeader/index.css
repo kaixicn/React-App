@@ -1,8 +1,7 @@
 
 .site-page-header-ghost-wrapper {
-    background-color: #F0F2F5;
+    /* background-color: #F0F2F5; */
     /* border-bottom: 1px solid white; */
-    
     border-bottom: 1px solid rgb(222, 222, 222);
   }
 
@@ -15,5 +14,6 @@
 .inline{
   display: inline;
   color: DarkCyan;
-  cursor:pointer;
+  /* color: DarkCyan; */
+  /* cursor:pointer; */
 }

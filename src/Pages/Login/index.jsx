@@ -38,6 +38,7 @@ export default function Login(props) {
           console.log("登録成功")
           cookie.save(cookieKeys.token, Encrypt(token));//加密token并存放cookie
           cookie.save(cookieKeys.login_id, Encrypt(values.username));//加密ID并存放cookie
+          cookie.save(cookieKeys.employee_name, Encrypt(response.data.employeeName));//加密ID并存放cookie
           dispatch(reducer_isLogin(true)) //ログイン状態 -> ログイン済み
 
         }else{//登録失敗の場合

@@ -46,10 +46,12 @@ export default function SearchResultList(props) {
       employeeNameKatakana: employeeInfoList[i].employeeNameKatakana,
       subdivision: employeeInfoList[i].subdivision,
       entryDate: employeeInfoList[i].entryDate,
-      description: `工事中`,
+      //description: `工事中`, 十字展开
     });
   }
-  const expandable = { expandedRowRender: record => <p>{record.description}</p> };
+
+  //十字展开
+  // const expandable = { expandedRowRender: record => <p>{record.description}</p> };
 
   //页面一览的配置
   let state = {
@@ -57,7 +59,7 @@ export default function SearchResultList(props) {
     loading: isLoading, //検索中
     bottom: 'bottomCenter',
     size: 'small',
-    expandable,
+    // expandable,　十字展开
     showHeader:true,
     hasData: data.length < 1 ? false:true,
     top: 'topRight',
@@ -67,9 +69,9 @@ export default function SearchResultList(props) {
         <Space>
           <span>検索結果一覧</span>
           <span>(</span>
-          <span>データ総数 : {employeeInfoList.length}</span> 
-          <span>,</span>
-          <span>選択中データ : {selectedRowKeys.length}</span> 
+          <span>総件数 : {employeeInfoList.length}</span> 
+          <span>|</span>
+          <span>選択中 : {selectedRowKeys.length}</span> 
           <span>)</span>
         </Space>
       )
